@@ -86,4 +86,21 @@ class AutolayouTests: XCTestCase {
         XCTAssertEqual(view.frame.width, 150)
         XCTAssertEqual(view.frame.height, 0)
     }
+    
+    func testScale() {
+        view.fix(width: 20)
+        view.scale(aspectRatio: 2.0)
+        view.setNeedsLayout()
+        view.layoutIfNeeded()
+        
+        XCTAssertEqual(view.bounds.height, 40)
+    }
+    
+    func testGetConstants() {
+        view.fix(width: 20, height: 30)
+        view.setNeedsLayout()
+        view.layoutIfNeeded()
+        
+        XCTAssertEqual(view.constants(in: [.width, .height]), [.width: 20, .height: 30])
+    }
 }
