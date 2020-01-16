@@ -1,4 +1,7 @@
 # AutoLayoutSwift
+![Build Status](https://travis-ci.org/Hassaniiii/AutoLayout.svg?branch=master)
+![cocoapods compatible](https://img.shields.io/badge/Cocoapods-compatible-4BC51D.svg?style=flat)
+![Licence](https://img.shields.io/github/license/Hassaniiii/CBORSwift.svg)
 
 The library is aimed to help developers to apply complex AutoLayout structures in a few lines of code. The library is available under *MIT* license and is available over *Cocoapods* dependency manager.
 
@@ -40,6 +43,8 @@ The *leading* and *trailing* anchors are referred also as *left* and *right* anc
 ```swift
 viewA.fix(left: (value, viewB), right: (value, viewB), isRelative: false
 ```
+![Diagram](https://github.com/Hassaniiii/AutoLayout/blob/master/ScreenShots/leading-trailing.png)
+
 
 #### Top - Bottom
 
@@ -48,6 +53,8 @@ To add *top* or *bottom* constraints from `viewA` to `viewB`, you may use the fo
 ```swift
 viewA.fix(top: (value, viewB), bottom: (value, viewB), isRelative: false)
 ```
+![Diagram](https://github.com/Hassaniiii/AutoLayout/blob/master/ScreenShots/top-bottom.png)
+
 
 #### Width, Height, Aspect Ratio
 
