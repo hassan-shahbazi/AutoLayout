@@ -10,7 +10,7 @@ The library is aimed to help developers to apply complex AutoLayout structures i
 The library is published over *Cocoapods*. To install, just add the following line to your `podfile`:
 
 ```bash
-pod AutoLayoutSwift ~> 2.0
+pod 'AutoLayoutSwift' ~> 2.0
 ```
 
 And run the following command in *Terminal*
