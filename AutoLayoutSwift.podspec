@@ -24,8 +24,7 @@ Pod::Spec.new do |spec|
   spec.platform     = :ios, "9.0"
 
   # ――― Source Location ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
-  spec.source       = { :git => "https://github.com/Hassaniiii/AutoLayout.git", :tag => "#{spec.version}" }
-
+  spec.source       = { :git => "https://github.com/Hassaniiii/AutoLayout.git", :tag => spec.version }
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   spec.subspec "AutoLayout" do |s|
