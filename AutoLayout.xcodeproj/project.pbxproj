@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		854C877023E885D000C8A5F9 /* AutoLayoutSwift.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 854C876F23E885D000C8A5F9 /* AutoLayoutSwift.podspec */; };
+		854C877223E885D500C8A5F9 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 854C877123E885D500C8A5F9 /* README.md */; };
+		854C877423E885DA00C8A5F9 /* LICENSE.md in Resources */ = {isa = PBXBuildFile; fileRef = 854C877323E885DA00C8A5F9 /* LICENSE.md */; };
 		8563006523B372A80098A7B0 /* AutoLayout.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8563005B23B372A80098A7B0 /* AutoLayout.framework */; };
 		8563006C23B372A80098A7B0 /* AutoLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 8563005E23B372A80098A7B0 /* AutoLayout.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8563007623B372CB0098A7B0 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8563007523B372CB0098A7B0 /* UIView+Extensions.swift */; };
@@ -24,6 +27,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		854C876F23E885D000C8A5F9 /* AutoLayoutSwift.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AutoLayoutSwift.podspec; sourceTree = "<group>"; };
+		854C877123E885D500C8A5F9 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		854C877323E885DA00C8A5F9 /* LICENSE.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = LICENSE.md; sourceTree = "<group>"; };
 		8563005B23B372A80098A7B0 /* AutoLayout.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AutoLayout.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8563005E23B372A80098A7B0 /* AutoLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AutoLayout.h; sourceTree = "<group>"; };
 		8563005F23B372A80098A7B0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -55,6 +61,9 @@
 		8563005123B372A80098A7B0 = {
 			isa = PBXGroup;
 			children = (
+				854C877323E885DA00C8A5F9 /* LICENSE.md */,
+				854C877123E885D500C8A5F9 /* README.md */,
+				854C876F23E885D000C8A5F9 /* AutoLayoutSwift.podspec */,
 				8563005D23B372A80098A7B0 /* AutoLayout */,
 				8563006823B372A80098A7B0 /* AutoLayoutTests */,
 				8563005C23B372A80098A7B0 /* Products */,
@@ -183,6 +192,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				854C877223E885D500C8A5F9 /* README.md in Resources */,
+				854C877423E885DA00C8A5F9 /* LICENSE.md in Resources */,
+				854C877023E885D000C8A5F9 /* AutoLayoutSwift.podspec in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

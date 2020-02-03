@@ -13,11 +13,11 @@ extension UIView {
     public func fix(width: CGFloat = -1, height: CGFloat = -1) -> Self {
         self.translatesAutoresizingMaskIntoConstraints = false
         if width >= 0 {
-            self.deactivate(size: [.width])
+            self.deactivate(constraints: [.width])
             self.widthAnchor.constraint(equalToConstant: width).isActive = true
         }
         if height >= 0 {
-            self.deactivate(size: [.height])
+            self.deactivate(constraints: [.height])
             self.heightAnchor.constraint(equalToConstant: height).isActive = true
         }
         
@@ -29,12 +29,12 @@ extension UIView {
         self.translatesAutoresizingMaskIntoConstraints = false
         if let leftSide = left {
             let (value, toView) = leftSide
-            self.deactivate(origin: [.leading])
+            self.deactivate(constraints: [.leading])
             self.leadingAnchor.constraint(equalTo: isRelative ? toView.trailingAnchor : toView.leadingAnchor, constant: value).isActive = true
         }
         if let rightSide = right {
             let (value, toView) = rightSide
-            self.deactivate(origin: [.trailing])
+            self.deactivate(constraints: [.trailing])
             self.trailingAnchor.constraint(equalTo: isRelative ? toView.leadingAnchor : toView.trailingAnchor, constant: -value).isActive = true
         }
         return self
@@ -45,12 +45,12 @@ extension UIView {
         self.translatesAutoresizingMaskIntoConstraints = false
         if let topSide = top {
             let (value, toView) = topSide
-            self.deactivate(origin: [.top])
+            self.deactivate(constraints: [.top])
             self.topAnchor.constraint(equalTo: isRelative ? toView.bottomAnchor : toView.topAnchor, constant: value).isActive = true
         }
         if let bottomSide = bottom {
             let (value, toView) = bottomSide
-            self.deactivate(origin: [.bottom])
+            self.deactivate(constraints: [.bottom])
             self.bottomAnchor.constraint(equalTo: isRelative ? toView.topAnchor : toView.bottomAnchor, constant: -value).isActive = true
         }
         return self
@@ -69,33 +69,12 @@ extension UIView {
     }
     
     @discardableResult
-    public func deactivate(origin: [NSLayoutConstraint.Attribute] = [], size: [NSLayoutConstraint.Attribute] = []) -> Self {
-        origin.forEach { attribute in
-            self.superview?.constraints
-                .filter({ target in
-                    target.firstItem as? UIView == self && target.firstAttribute == attribute
-                })
-                .first?
-                .isActive = false
-        }
-        size.forEach { attribute in
-            self.constraints
-                .filter({ target in
-                    target.firstItem as? UIView == self && target.firstAttribute == attribute
-                })
-                .first?
-                .isActive = false
-        }
-        return self
-    }
-    
-    @discardableResult
     public func constants(in layouts: [NSLayoutConstraint.Attribute]) -> [NSLayoutConstraint.Attribute: CGFloat] {
         return self.constraints
             .filter { layouts.contains($0.firstAttribute) }
             .reduce(into: [:]) { (list: inout [NSLayoutConstraint.Attribute: CGFloat], constraint: NSLayoutConstraint) in
                 list[constraint.firstAttribute] = constraint.constant
-        }
+            }
     }
     
     @discardableResult
@@ -104,5 +83,28 @@ extension UIView {
         self.heightAnchor.constraint(equalTo: self.widthAnchor, multiplier: aspectRatio).isActive = true
         
         return self
+    }
+}
+
+extension UIView {
+    @discardableResult
+    public func deactivate(constraints: [NSLayoutConstraint.Attribute]) -> Self {
+        constraints.forEach({
+            self.find(attribute: $0)?.isActive = false
+        })
+        return self
+    }
+    
+    public func find(attribute: NSLayoutConstraint.Attribute) -> NSLayoutConstraint? {
+        if let origin = self.superview?.constraints
+            .filter({ target in
+                target.firstItem as? UIView == self && target.firstAttribute == attribute
+            }).first {
+                return origin
+            }
+        return self.constraints
+            .filter({ target in
+                target.firstItem as? UIView == self && target.firstAttribute == attribute
+            }).first
     }
 }

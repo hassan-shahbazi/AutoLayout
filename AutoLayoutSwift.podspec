@@ -2,7 +2,7 @@ Pod::Spec.new do |spec|
 
   # ―――  Spec Metadata  ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   spec.name         = "AutoLayoutSwift"
-  spec.version      = "2.1"
+  spec.version      = "3.0"
   spec.summary      = "The library provides an easy approach to auto layout features programmatically."
   spec.description  = <<-DESC
   Written in Swift 5.0 and useful for iOS versions later than 9.0, the library provides an easy approach to auto layout features programmatically.
