@@ -2,11 +2,11 @@ Pod::Spec.new do |spec|
 
   # ―――  Spec Metadata  ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   spec.name         = "AutoLayoutSwift"
-  spec.version      = "3.0"
+  spec.version      = "3.1"
   spec.summary      = "The library provides an easy approach to auto layout features programmatically."
   spec.description  = <<-DESC
   Written in Swift 5.0 and useful for iOS versions later than 9.0, the library provides an easy approach to auto layout features programmatically.
-  Provides functions for setting top, left, right, bottom, trailing, leading, width, and height constrainsts.
+  Provides functions for setting top, left, right, bottom, trailing, leading, width, and height constraints.
   Provides functions for removing (deactivating) currently set constraints (either by code, or storyboard)
                    DESC
   spec.homepage     = "https://github.com/Hassaniiii/AutoLayout"
