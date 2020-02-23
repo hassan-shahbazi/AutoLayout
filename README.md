@@ -32,7 +32,7 @@ The official documentation about AutoLayout concepts can be found at [Apple offi
 
 ```swift
 viewA
-  .fix(left: (0, viewB) isRelative: true)
+  .fix(leading: (0, viewB) isRelative: true)
   .fix(top: (0, superview), bottom: (0, superview), toSafeArea: true, isRelative: false)
   .fix(height: 20)
 ```
@@ -42,7 +42,7 @@ viewA
 The *leading* and *trailing* anchors are referred also as *left* and *right* anchors respectively. To add constraints from `viewA` to `viewB`, you may use the following function. 
 
 ```swift
-viewA.fix(left: (value, viewB), right: (value, viewB), isRelative: false
+viewA.fix(leading: (value, viewB), trailing: (value, viewB), isRelative: false
 ```
 ![Diagram](https://github.com/Hassaniiii/AutoLayout/blob/master/ScreenShots/leading-trailing.png)
 
