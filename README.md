@@ -10,7 +10,7 @@ The library is aimed to help developers to apply complex AutoLayout structures i
 The library is published over *Cocoapods*. To install, just add the following line to your `podfile`:
 
 ```bash
-pod 'AutoLayoutSwift', '~> 2.0'
+pod 'AutoLayoutSwift', '~> 3.1'
 ```
 
 And run the following command in *Terminal*
@@ -27,12 +27,13 @@ The official documentation about AutoLayout concepts can be found at [Apple offi
 
 - The parameters in all functions are optional meaning you don't have to specify values for all anchors. The only specified anchors will be applied.
 - The `isRelative` parameter determines if the anchor should be constrained by the corresponded anchor or not. For example, if you want to constraint the leading anchor of `viewA` to the trailing anchor of `viewB`, you may pass `true` for the parameter.
+- **Starting version 3.1, you can set constraints to safe area for supported devices running iOS 11 and upper**
 - The functions return `UIView` as the object, so it is possible to apply a chain of constraint to the target view. As an example:
 
 ```swift
 viewA
-  .fix(left: (0, viewB), isRelative: true)
-  .fix(top: (0, superview), bottom: (0, superview), isRelative: false)
+  .fix(left: (0, viewB) isRelative: true)
+  .fix(top: (0, superview), bottom: (0, superview), toSafeArea: true, isRelative: false)
   .fix(height: 20)
 ```
 
@@ -54,7 +55,6 @@ To add *top* or *bottom* constraints from `viewA` to `viewB`, you may use the fo
 viewA.fix(top: (value, viewB), bottom: (value, viewB), isRelative: false)
 ```
 ![Diagram](https://github.com/Hassaniiii/AutoLayout/blob/master/ScreenShots/top-bottom.png)
-
 
 #### Width, Height, Aspect Ratio
 
