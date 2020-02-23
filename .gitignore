@@ -1,0 +1,6 @@
+# AppCode
+.idea/
+
+# Xcode
+AutoLayout.xcodeproj/xcuserdata/
+AutoLayout.xcodeproj/project.xcworkspace/xcuserdata/

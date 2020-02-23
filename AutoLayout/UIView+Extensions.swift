@@ -25,33 +25,49 @@ extension UIView {
     }
     
     @discardableResult
-    public func fix(left: (value: CGFloat, toView: UIView)? = nil, right: (value: CGFloat, toView: UIView)? = nil, isRelative: Bool = true) -> Self {
+    public func fix(leading: (value: CGFloat, toView: UIView)? = nil, trailing: (value: CGFloat, toView: UIView)? = nil, toSafeArea: Bool = false, isRelative: Bool = false) -> Self {
         self.translatesAutoresizingMaskIntoConstraints = false
-        if let leftSide = left {
+        if let leftSide = leading {
             let (value, toView) = leftSide
             self.deactivate(constraints: [.leading])
-            self.leadingAnchor.constraint(equalTo: isRelative ? toView.trailingAnchor : toView.leadingAnchor, constant: value).isActive = true
+            if #available(iOS 11, *), toSafeArea {
+                self.leadingAnchor.constraint(equalTo: isRelative ? toView.safeAreaLayoutGuide.trailingAnchor : toView.safeAreaLayoutGuide.leadingAnchor, constant: value).isActive = true
+            } else {
+                self.leadingAnchor.constraint(equalTo: isRelative ? toView.trailingAnchor : toView.leadingAnchor, constant: value).isActive = true
+            }
         }
-        if let rightSide = right {
+        if let rightSide = trailing {
             let (value, toView) = rightSide
             self.deactivate(constraints: [.trailing])
-            self.trailingAnchor.constraint(equalTo: isRelative ? toView.leadingAnchor : toView.trailingAnchor, constant: -value).isActive = true
+            if #available(iOS 11, *) {
+                self.trailingAnchor.constraint(equalTo: isRelative ? toView.safeAreaLayoutGuide.leadingAnchor : toView.safeAreaLayoutGuide.trailingAnchor, constant: -value).isActive = true
+            } else {
+                self.trailingAnchor.constraint(equalTo: isRelative ? toView.leadingAnchor : toView.trailingAnchor, constant: -value).isActive = true
+            }
         }
         return self
     }
     
     @discardableResult
-    public func fix(top: (value: CGFloat, toView: UIView)? = nil, bottom: (value: CGFloat, toView: UIView)? = nil, isRelative: Bool = true) -> Self {
+    public func fix(top: (value: CGFloat, toView: UIView)? = nil, bottom: (value: CGFloat, toView: UIView)? = nil, toSafeArea: Bool = false, isRelative: Bool = false) -> Self {
         self.translatesAutoresizingMaskIntoConstraints = false
         if let topSide = top {
             let (value, toView) = topSide
             self.deactivate(constraints: [.top])
-            self.topAnchor.constraint(equalTo: isRelative ? toView.bottomAnchor : toView.topAnchor, constant: value).isActive = true
+            if #available(iOS 11, *), toSafeArea {
+                self.topAnchor.constraint(equalTo: isRelative ? toView.safeAreaLayoutGuide.bottomAnchor : toView.safeAreaLayoutGuide.topAnchor, constant: value).isActive = true
+            } else {
+                self.topAnchor.constraint(equalTo: isRelative ? toView.bottomAnchor : toView.topAnchor, constant: value).isActive = true
+            }
         }
         if let bottomSide = bottom {
             let (value, toView) = bottomSide
             self.deactivate(constraints: [.bottom])
-            self.bottomAnchor.constraint(equalTo: isRelative ? toView.topAnchor : toView.bottomAnchor, constant: -value).isActive = true
+            if #available(iOS 11, *) {
+                self.bottomAnchor.constraint(equalTo: isRelative ? toView.safeAreaLayoutGuide.topAnchor : toView.safeAreaLayoutGuide.bottomAnchor, constant: -value).isActive = true
+            } else {
+                self.bottomAnchor.constraint(equalTo: isRelative ? toView.topAnchor : toView.bottomAnchor, constant: -value).isActive = true
+            }
         }
         return self
     }
@@ -70,7 +86,7 @@ extension UIView {
     
     @discardableResult
     public func constants(in layouts: [NSLayoutConstraint.Attribute]) -> [NSLayoutConstraint.Attribute: CGFloat] {
-        return self.constraints
+        self.constraints
             .filter { layouts.contains($0.firstAttribute) }
             .reduce(into: [:]) { (list: inout [NSLayoutConstraint.Attribute: CGFloat], constraint: NSLayoutConstraint) in
                 list[constraint.firstAttribute] = constraint.constant
