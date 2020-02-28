@@ -25,7 +25,7 @@ class AutolayouTests: XCTestCase {
         view.removeConstraints(view.constraints)
     }
 
-    func testAutolayouSize() {
+    func testAutolayoutSize() {
         view.fix(width: 150, height: 170)
         view.setNeedsLayout()
         view.layoutIfNeeded()
@@ -34,7 +34,7 @@ class AutolayouTests: XCTestCase {
         XCTAssertEqual(view.frame.height, 170)
     }
     
-    func testAutolayouOrigin() {
+    func testAutolayoutOrigin() {
         view.fix(leading: (30, superView))
         view.fix(top: (10, superView))
         superView.setNeedsLayout()

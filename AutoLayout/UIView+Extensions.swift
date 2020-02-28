@@ -13,11 +13,9 @@ extension UIView {
     public func fix(width: CGFloat = -1, height: CGFloat = -1) -> Self {
         self.translatesAutoresizingMaskIntoConstraints = false
         if width >= 0 {
-            self.deactivate(constraints: [.width])
             self.widthAnchor.constraint(equalToConstant: width).isActive = true
         }
         if height >= 0 {
-            self.deactivate(constraints: [.height])
             self.heightAnchor.constraint(equalToConstant: height).isActive = true
         }
         
@@ -27,18 +25,14 @@ extension UIView {
     @discardableResult
     public func fix(leading: (value: CGFloat, toView: UIView)? = nil, trailing: (value: CGFloat, toView: UIView)? = nil, toSafeArea: Bool = false, isRelative: Bool = false) -> Self {
         self.translatesAutoresizingMaskIntoConstraints = false
-        if let leftSide = leading {
-            let (value, toView) = leftSide
-            self.deactivate(constraints: [.leading])
+        if let (value, toView) = leading {
             if #available(iOS 11, *), toSafeArea {
                 self.leadingAnchor.constraint(equalTo: isRelative ? toView.safeAreaLayoutGuide.trailingAnchor : toView.safeAreaLayoutGuide.leadingAnchor, constant: value).isActive = true
             } else {
                 self.leadingAnchor.constraint(equalTo: isRelative ? toView.trailingAnchor : toView.leadingAnchor, constant: value).isActive = true
             }
         }
-        if let rightSide = trailing {
-            let (value, toView) = rightSide
-            self.deactivate(constraints: [.trailing])
+        if let (value, toView) = trailing {
             if #available(iOS 11, *) {
                 self.trailingAnchor.constraint(equalTo: isRelative ? toView.safeAreaLayoutGuide.leadingAnchor : toView.safeAreaLayoutGuide.trailingAnchor, constant: -value).isActive = true
             } else {
@@ -51,18 +45,14 @@ extension UIView {
     @discardableResult
     public func fix(top: (value: CGFloat, toView: UIView)? = nil, bottom: (value: CGFloat, toView: UIView)? = nil, toSafeArea: Bool = false, isRelative: Bool = false) -> Self {
         self.translatesAutoresizingMaskIntoConstraints = false
-        if let topSide = top {
-            let (value, toView) = topSide
-            self.deactivate(constraints: [.top])
+        if let (value, toView) = top {
             if #available(iOS 11, *), toSafeArea {
                 self.topAnchor.constraint(equalTo: isRelative ? toView.safeAreaLayoutGuide.bottomAnchor : toView.safeAreaLayoutGuide.topAnchor, constant: value).isActive = true
             } else {
                 self.topAnchor.constraint(equalTo: isRelative ? toView.bottomAnchor : toView.topAnchor, constant: value).isActive = true
             }
         }
-        if let bottomSide = bottom {
-            let (value, toView) = bottomSide
-            self.deactivate(constraints: [.bottom])
+        if let (value, toView) = bottom {
             if #available(iOS 11, *) {
                 self.bottomAnchor.constraint(equalTo: isRelative ? toView.safeAreaLayoutGuide.topAnchor : toView.safeAreaLayoutGuide.bottomAnchor, constant: -value).isActive = true
             } else {
@@ -108,6 +98,7 @@ extension UIView {
         constraints.forEach({
             self.find(attribute: $0)?.isActive = false
         })
+        
         return self
     }
     
