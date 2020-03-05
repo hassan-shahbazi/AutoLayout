@@ -13,7 +13,7 @@
 		8563006523B372A80098A7B0 /* AutoLayout.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8563005B23B372A80098A7B0 /* AutoLayout.framework */; };
 		8563006C23B372A80098A7B0 /* AutoLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 8563005E23B372A80098A7B0 /* AutoLayout.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8563007623B372CB0098A7B0 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8563007523B372CB0098A7B0 /* UIView+Extensions.swift */; };
-		8563007823B372F00098A7B0 /* AutolayouTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8563007723B372F00098A7B0 /* AutolayouTests.swift */; };
+		8563007823B372F00098A7B0 /* AutolayoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8563007723B372F00098A7B0 /* AutolayoutTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +36,7 @@
 		8563006423B372A80098A7B0 /* AutoLayoutTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AutoLayoutTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8563006B23B372A80098A7B0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8563007523B372CB0098A7B0 /* UIView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
-		8563007723B372F00098A7B0 /* AutolayouTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutolayouTests.swift; sourceTree = "<group>"; };
+		8563007723B372F00098A7B0 /* AutolayoutTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutolayoutTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,7 +92,7 @@
 		8563006823B372A80098A7B0 /* AutoLayoutTests */ = {
 			isa = PBXGroup;
 			children = (
-				8563007723B372F00098A7B0 /* AutolayouTests.swift */,
+				8563007723B372F00098A7B0 /* AutolayoutTests.swift */,
 				8563006B23B372A80098A7B0 /* Info.plist */,
 			);
 			path = AutoLayoutTests;
@@ -220,7 +220,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8563007823B372F00098A7B0 /* AutolayouTests.swift in Sources */,
+				8563007823B372F00098A7B0 /* AutolayoutTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

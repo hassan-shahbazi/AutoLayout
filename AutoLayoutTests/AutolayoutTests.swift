@@ -9,7 +9,7 @@
 import XCTest
 @testable import AutoLayout
 
-class AutolayouTests: XCTestCase {
+class AutolayoutTests: XCTestCase {
     var superView: UIView!
     var view: UIView!
     
@@ -35,27 +35,31 @@ class AutolayouTests: XCTestCase {
     }
     
     func testAutolayoutOrigin() {
-        view.fix(leading: (30, superView))
-        view.fix(top: (10, superView))
+        view
+            .fix(width: 200)
+            .fix(trailing: (30, superView))
+            .fix(top: (10, superView))
         superView.setNeedsLayout()
         superView.layoutIfNeeded()
         view.setNeedsLayout()
         view.layoutIfNeeded()
 
         XCTAssertEqual(view.frame.origin.y, 10)
-        XCTAssertEqual(view.frame.origin.x, 30)
+        XCTAssertEqual(view.frame.origin.x, 270)
     }
     
     func testAutolayoutOriginActivate() {
         view
+            .fix(width: 200)
             .fix(top: (10, superView), isRelative: false)
-            .fix(leading: (30, superView), isRelative: false)
+            .fix(trailing: (30, superView), isRelative: false)
         superView.setNeedsLayout()
         superView.layoutIfNeeded()
         view.setNeedsLayout()
         view.layoutIfNeeded()
         
-        view.deactivate(constraints: [.leading])
+        view
+            .deactivate(constraints: [.trailing])
         superView.setNeedsLayout()
         superView.layoutIfNeeded()
         view.setNeedsLayout()
@@ -64,7 +68,8 @@ class AutolayouTests: XCTestCase {
         XCTAssertEqual(view.frame.origin.y, 10)
         XCTAssertEqual(view.frame.origin.x, 0)
         
-        view.fix(leading: (30, superView), isRelative: false)
+        view
+            .fix(leading: (30, superView), isRelative: false)
         superView.setNeedsLayout()
         superView.layoutIfNeeded()
         view.setNeedsLayout()
@@ -102,5 +107,52 @@ class AutolayouTests: XCTestCase {
         view.layoutIfNeeded()
         
         XCTAssertEqual(view.constants(in: [.width, .height]), [.width: 20, .height: 30])
+    }
+
+    func testFindAttributes() {
+        view
+            .fix(top: (10, superView), bottom: (15, superView), isRelative: false)
+            .fix(leading: (30, superView), trailing: (20, superView), isRelative: false)
+        superView.setNeedsLayout()
+        superView.layoutIfNeeded()
+        view.setNeedsLayout()
+        view.layoutIfNeeded()
+    
+        XCTAssertNotNil(view.find(attribute: .top))
+        XCTAssertEqual(view.top!.constant, 10)
+        
+        XCTAssertNotNil(view.find(attribute: .bottom))
+        XCTAssertEqual(view.bottom!.constant, -15)
+        
+        XCTAssertNotNil(view.find(attribute: .leading))
+        XCTAssertEqual(view.leading!.constant, 30)
+        
+        XCTAssertNotNil(view.find(attribute: .trailing))
+        XCTAssertEqual(view.trailing!.constant, -20)
+    }
+
+    func testGreaterAttributes() {
+        view
+            .fix(width: 200)
+            .fix(leading: (30, superView), relation: .greaterThan)
+            .fix(trailing: (30, superView))
+        superView.setNeedsLayout()
+        superView.layoutIfNeeded()
+        view.setNeedsLayout()
+        view.layoutIfNeeded()
+    
+        XCTAssertEqual(view.frame.origin.x, 270)
+    }
+
+    func testFindByID() {
+        view
+            .fix(trailing: (30, superView))
+        superView.setNeedsLayout()
+        superView.layoutIfNeeded()
+        view.setNeedsLayout()
+        view.layoutIfNeeded()
+        
+        view.trailing?.identifier = "Test Trailing"
+        XCTAssertNotNil(view.find(identifier: "Test Trailing"))
     }
 }
